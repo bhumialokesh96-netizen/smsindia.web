@@ -16,6 +16,7 @@
             --text-dark: #1F2937;
             --text-light: #4B5563;
             --bg-light: #F9FAFB;
+            --telegram: #0088cc;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -169,10 +170,41 @@
         .faq-question { padding: 20px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; }
         .faq-answer { padding: 0 20px 20px 20px; color: var(--text-light); display: none; line-height: 1.6; }
         
+        /* --- TELEGRAM FLOAT --- */
+        .telegram-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--telegram);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
+            z-index: 2000;
+            transition: 0.3s;
+            text-decoration: none;
+            animation: bounceIn 1s;
+        }
+        .telegram-float:hover {
+            transform: translateY(-5px);
+            background: #0077b5;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
         /* --- FOOTER --- */
         footer { background: #1B5E20; color: white; padding: 50px 5% 20px 5%; text-align: center; }
         .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; }
         .footer-links a { color: #A5D6A7; text-decoration: none; }
+        .footer-links a:hover { color: white; text-decoration: underline; }
         .copyright { font-size: 12px; opacity: 0.6; border-top: 1px solid #2E7D32; padding-top: 20px; }
 
         @media (max-width: 768px) {
@@ -184,6 +216,7 @@
             .faq { padding: 80px 5%; }
             .cta-btn { width: 100%; justify-content: center; }
             .logo span { display: none; }
+            .telegram-float { bottom: 15px; right: 15px; width: 50px; height: 50px; font-size: 24px; }
         }
     </style>
 </head>
@@ -277,12 +310,27 @@
             <div class="faq-question">What is the minimum withdrawal? <i class="fa-solid fa-chevron-down"></i></div>
             <div class="faq-answer">The minimum withdrawal amount is just ₹100. You can earn this easily in 1-2 days.</div>
         </div>
+        
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">How to contact support? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-answer">You can contact our support team 24/7 on Telegram: <a href="https://t.me/SMSindia102" style="color: var(--primary);">@SMSindia102</a></div>
+        </div>
     </section>
+
+    <!-- FLOATING TELEGRAM BUTTON -->
+    <a href="https://t.me/SMSindia102" target="_blank" class="telegram-float" title="Contact Support">
+        <i class="fa-brands fa-telegram"></i>
+    </a>
 
     <!-- FOOTER -->
     <footer>
         <div class="logo" style="justify-content: center; color: white; margin-bottom: 20px;">
             SMS INDIA APP
+        </div>
+        <div class="footer-links">
+            <a href="https://t.me/SMSindia102" target="_blank"><i class="fa-brands fa-telegram"></i> Telegram Support</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
         </div>
         <div class="copyright">
             &copy; 2024 SMS India. All rights reserved.
