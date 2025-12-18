@@ -3,33 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Opening SMS India...</title>
-    <script>
-        window.onload = function() {
-            // 1. Get the invite code from the URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const inviteCode = urlParams.get('inviteCode');
-
-            // 2. Try to open the App (Deep Link)
-            // CHANGE "smsindia" TO YOUR EXACT APP SCHEME IF DIFFERENT
-            window.location.href = "smsindia://invite?code=" + inviteCode;
-
-            // 3. If App doesn't open after 2 seconds, go to the Website
-            setTimeout(function() {
-                // THIS IS THE FIX: Use the full https link
-                window.location.href = "https://smsindia.cfd"; 
-            }, 2000);
-        };
-    </script>
+    <title>Joining SMS India...</title>
     <style>
-        body { font-family: sans-serif; text-align: center; padding-top: 20%; }
-        .loader { border: 5px solid #f3f3f3; border-top: 5px solid #3498db; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        body { font-family: sans-serif; text-align: center; padding: 40px 20px; background-color: #f4f4f9; }
+        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 400px; margin: 0 auto; }
+        h2 { color: #333; margin-bottom: 10px; }
+        .code-box { font-size: 24px; font-weight: bold; color: #4CAF50; background: #e8f5e9; padding: 15px; border-radius: 8px; margin: 20px 0; border: 2px dashed #4CAF50; word-break: break-all; }
+        .btn { background: #2196F3; color: white; border: none; padding: 12px 25px; font-size: 16px; border-radius: 25px; cursor: pointer; width: 100%; margin-top: 10px; }
+        .redirect-msg { color: #888; font-size: 14px; margin-top: 20px; }
     </style>
 </head>
 <body>
-    <div class="loader"></div>
-    <h2>Opening App...</h2>
-    <p>If nothing happens, <a href="https://smsindia.cfd">Click Here</a>.</p>
+
+    <div class="card">
+        <h2>You've been invited!</h2>
+        <p>Here is your invite code:</p>
+        
+        <!-- The Code will appear here -->
+        <div id="codeDisplay" class="code-box">...</div>
+
+        <button onclick="copyCode()" class="btn">📋 Copy Code</button>
+        <button onclick="openApp()" class="btn" style="background:#4CAF50; margin-top:10px;">🚀 Open App</button>
+        
+        <p class="redirect-msg" id="status">Redirecting...</p>
+    </div>
+
+    <!-- Hidden input for copying -->
+    <input type="text" id="hiddenInput" style="position: absolute; left: -9999px;">
+
+    <script>
+        // 1. Get the Invite Code from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const inviteCode = urlParams.get('inviteCode');
+        const deepLink = "smsindia://invite?code=" + inviteCode;
+        const webLink = "https://smsindia.cfd";
+
+        // Display the code on screen
+        if (inviteCode) {
+            document.getElementById('codeDisplay').innerText = inviteCode;
+            document.getElementById('hiddenInput').value = inviteCode;
+            
+            // Try to copy automatically
+            copyCode();
+        } else {
+            document.getElementById('codeDisplay').innerText = "No Code Found";
+        }
+
+        function copyCode() {
+            var copyText = document.getElementById("hiddenInput");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // For mobile
+            
+            try {
+                navigator.clipboard.writeText(inviteCode).then(function() {
+                    document.getElementById('status').innerText = "✅ Code Copied!";
+                });
+            } catch (err) {
+                // Fallback for older browsers
+                document.execCommand("copy");
+                document.getElementById('status').innerText = "✅ Code Copied!";
+            }
+        }
+
+        function openApp() {
+            window.location.href = deepLink;
+            setTimeout(function() {
+                window.location.href = webLink;
+            }, 2500);
+        }
+
+        // Auto-redirect after 1 second
+        setTimeout(function() {
+            openApp();
+        }, 1000);
+
+    </script>
+
 </body>
 </html>
