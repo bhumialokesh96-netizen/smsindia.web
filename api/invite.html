@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Redirecting...</title>
+    <title>Opening App...</title>
     <script>
-        // Wait 1 second so you can see this message, then go to Google
-        setTimeout(function() {
-            window.location.href = "https://www.google.com";
-        }, 1000);
+        window.onload = function() {
+            var params = new URLSearchParams(window.location.search);
+            var code = params.get('inviteCode');
+
+            if (code) {
+                // 1. Try to open the Main Website / App Link
+                window.location.href = "https://smsindia.cfd/invite?inviteCode=" + code;
+            } else {
+                // 2. If no code, go to Home
+                window.location.href = "https://smsindia.cfd/";
+            }
+        };
     </script>
 </head>
-<body style="background-color: black; color: white; font-size: 20px; text-align: center; padding-top: 50px;">
-    <h1>✅ IT WORKS!</h1>
-    <p>Redirecting to Google...</p>
+<body>
+    <h3>Opening SMS India... Please Wait.</h3>
 </body>
 </html>
