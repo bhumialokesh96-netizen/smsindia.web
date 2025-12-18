@@ -1,29 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Redirecting...</title>
+    <title>Opening App...</title>
     <script>
         window.onload = function() {
-            // Get the code
-            const params = new URLSearchParams(window.location.search);
-            const code = params.get('inviteCode');
+            var params = new URLSearchParams(window.location.search);
+            var code = params.get('inviteCode');
 
             if (code) {
-                // Open App
+                // 1. Try to open the Main Website / App Link
                 window.location.href = "https://smsindia.cfd/invite?inviteCode=" + code;
-
-                // Fallback to Download
-                setTimeout(function() {
-                    window.location.href = "https://smsindia.cfd/?ref=" + code;
-                }, 2000);
             } else {
+                // 2. If no code, go to Home
                 window.location.href = "https://smsindia.cfd/";
             }
         };
     </script>
 </head>
 <body>
-    <h3>Opening SMS India...</h3>
+    <h3>Opening SMS India... Please Wait.</h3>
 </body>
 </html>
