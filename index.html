@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS India - #1 Earning App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1B5E20;
+            --secondary: #2E7D32;
+            --gold: #FFC107;
+            --gold-dark: #FF8F00;
+            --text-dark: #1F2937;
+            --text-light: #4B5563;
+            --bg-light: #F9FAFB;
+            --telegram: #0088cc;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; color: var(--text-dark); background: var(--bg-light); overflow-x: hidden; }
+
+        /* --- NAVBAR --- */
+        nav {
+            background: rgba(255,255,255,0.95);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+        }
+        .logo { font-size: 24px; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+        .logo i { color: var(--gold); }
+        .nav-btn {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .nav-btn:hover { background: var(--secondary); transform: translateY(-2px); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 50px 5% 100px 5%;
+            background: linear-gradient(170deg, #1B5E20 0%, #43A047 100%);
+            color: white;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .circle { position: absolute; border-radius: 50%; opacity: 0.1; background: white; }
+        .c1 { width: 200px; height: 200px; top: -50px; left: -50px; }
+        .c2 { width: 300px; height: 300px; bottom: -100px; right: -50px; }
+
+        .hero-content { flex: 1; min-width: 300px; z-index: 2; padding-right: 20px; }
+        .hero-content h1 { font-size: 42px; line-height: 1.2; margin-bottom: 15px; font-weight: 700; }
+        .hero-content p { font-size: 18px; opacity: 0.9; margin-bottom: 30px; max-width: 500px; }
+
+        /* REFERRAL ALERT BOX */
+        .ref-alert {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid var(--gold);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            display: none; 
+            animation: slideIn 0.5s ease-out;
+            backdrop-filter: blur(5px);
+        }
+        @keyframes slideIn { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .ref-alert strong { color: var(--gold); font-size: 18px; letter-spacing: 1px; }
+
+        .cta-btn {
+            background: linear-gradient(to bottom, #FFCA28, #FF8F00);
+            color: #3E2723;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 25px rgba(255, 143, 0, 0.4);
+            transition: all 0.3s;
+            border: 2px solid white;
+            animation: pulse 2s infinite;
+        }
+        .cta-btn:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 30px rgba(255, 143, 0, 0.5); }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 193, 7, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0); }
+        }
+
+        .hero-image { flex: 1; min-width: 300px; display: flex; justify-content: center; z-index: 2; position: relative; margin-top: 30px; }
+        .hero-image img { 
+            max-width: 90%; 
+            border-radius: 30px; 
+            box-shadow: -20px 20px 60px rgba(0,0,0,0.3);
+            border: 6px solid rgba(255,255,255,0.2);
+            transform: rotate(-3deg);
+            transition: 0.5s;
+        }
+        .hero-image img:hover { transform: rotate(0deg) scale(1.02); }
+
+        /* --- STATS BAR --- */
+        .stats-bar {
+            background: white;
+            margin: -50px 5% 0 5%;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+        .stat-item { margin: 10px; }
+        .stat-num { font-size: 32px; font-weight: 800; color: var(--primary); }
+        .stat-label { color: var(--text-light); font-size: 14px; font-weight: 600; }
+
+        /* --- HOW IT WORKS --- */
+        .steps { padding: 80px 5%; text-align: center; }
+        .section-title { font-size: 32px; margin-bottom: 50px; color: var(--primary); font-weight: 700; }
+        .steps-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        
+        .step-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            width: 300px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border: 1px solid #EEE;
+        }
+        .step-card:hover { transform: translateY(-10px); border-color: var(--gold); }
+        .step-icon { font-size: 50px; margin-bottom: 20px; display: block; color: var(--gold-dark); }
+        .step-card h3 { margin-bottom: 10px; }
+
+        /* --- FEATURES --- */
+        .features { background: #E8F5E9; padding: 80px 5%; }
+        .feature-row { display: flex; align-items: center; justify-content: space-between; gap: 50px; flex-wrap: wrap; margin-bottom: 60px; }
+        .feature-row.reverse { flex-direction: row-reverse; }
+        .f-text { flex: 1; min-width: 300px; }
+        .f-text h2 { font-size: 28px; color: var(--primary); margin-bottom: 15px; }
+        .f-text p { color: var(--text-light); line-height: 1.6; margin-bottom: 20px; }
+        .f-img { flex: 1; text-align: center; min-width: 300px; }
+        .f-img img { max-width: 80%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+        /* --- FAQ --- */
+        .faq { padding: 80px 20%; }
+        .faq-item { background: white; border-radius: 10px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); overflow: hidden; }
+        .faq-question { padding: 20px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; }
+        .faq-answer { padding: 0 20px 20px 20px; color: var(--text-light); display: none; line-height: 1.6; }
+        
+        /* --- TELEGRAM FLOAT --- */
+        .telegram-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--telegram);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
+            z-index: 2000;
+            transition: 0.3s;
+            text-decoration: none;
+            animation: bounceIn 1s;
+        }
+        .telegram-float:hover {
+            transform: translateY(-5px);
+            background: #0077b5;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* --- FOOTER --- */
+        footer { background: #1B5E20; color: white; padding: 50px 5% 20px 5%; text-align: center; }
+        .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; }
+        .footer-links a { color: #A5D6A7; text-decoration: none; }
+        .footer-links a:hover { color: white; text-decoration: underline; }
+        .copyright { font-size: 12px; opacity: 0.6; border-top: 1px solid #2E7D32; padding-top: 20px; }
+
+        @media (max-width: 768px) {
+            .hero { text-align: center; padding-top: 30px; }
+            .hero-content h1 { font-size: 32px; }
+            .hero-image { margin-top: 50px; }
+            .hero-image img { transform: rotate(0); max-width: 100%; }
+            .stats-bar { margin-top: 20px; }
+            .faq { padding: 80px 5%; }
+            .cta-btn { width: 100%; justify-content: center; }
+            .logo span { display: none; }
+            .telegram-float { bottom: 15px; right: 15px; width: 50px; height: 50px; font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">
+            <i class="fa-solid fa-coins"></i> SMS INDIA
+        </div>
+        <a href="https://github.com/bhumialokesh96-netizen/SMSindia2/releases/download/V_1.0.42/SMSindia_V_1.0.49.apk" class="nav-btn" onclick="copyReferral()">Download App</a>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="circle c1"></div>
+        <div class="circle c2"></div>
+
+        <div class="hero-content">
+            <div id="ref-alert" class="ref-alert">
+                <i class="fa-solid fa-gift" style="color: #E91E63; margin-right: 5px;"></i> 
+                Bonus applied! Referral Code: <strong id="ref-code-display"></strong>
+            </div>
+
+            <h1>Turn Your Free Time<br>Into <span style="color: var(--gold);">Real Cash!</span></h1>
+            <p>Join 50,000+ Indians earning daily. Complete simple tasks, spin the wheel, and withdraw instantly to UPI/Bank.</p>
+            
+            <!-- DOWNLOAD BUTTON -->
+            <a href="https://github.com/bhumialokesh96-netizen/SMSindia2/releases/download/V_1.0.42/SMSindia_V_1.0.49.apk" id="download" class="cta-btn" onclick="copyReferral()">
+                <i class="fa-brands fa-android"></i> DOWNLOAD APK
+            </a>
+            
+            <div style="margin-top: 15px; font-size: 13px; opacity: 0.8;">
+                <i class="fa-solid fa-shield-halved"></i> 100% Safe & Secure
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="App User">
+        </div>
+    </header>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-num">50K+</div>
+            <div class="stat-label">Downloads</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">₹4.5L+</div>
+            <div class="stat-label">Paid Out</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">4.8 <i class="fa-solid fa-star" style="color: var(--gold); font-size: 20px;"></i></div>
+            <div class="stat-label">User Rating</div>
+        </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <section class="steps">
+        <h2 class="section-title">How To Earn Money?</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <i class="fa-solid fa-download step-icon"></i>
+                <h3>1. Install App</h3>
+                <p>Download the APK and login with your mobile number.</p>
+            </div>
+            <div class="step-card">
+                <i class="fa-solid fa-list-check step-icon"></i>
+                <h3>2. Do Tasks</h3>
+                <p>Spin the wheel, refer friends, or watch videos.</p>
+            </div>
+            <div class="step-card">
+                <i class="fa-solid fa-wallet step-icon"></i>
+                <h3>3. Withdraw</h3>
+                <p>Transfer money instantly to your Bank or UPI.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">Is this app free? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-answer">Yes! SMS India is 100% free to download and use. You never have to pay money to join.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">What is the minimum withdrawal? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-answer">The minimum withdrawal amount is just ₹100. You can earn this easily in 1-2 days.</div>
+        </div>
+        
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">How to contact support? <i class="fa-solid fa-chevron-down"></i></div>
+            <div class="faq-answer">You can contact our support team 24/7 on Telegram: <a href="https://t.me/SMSindia102" style="color: var(--primary);">https://psce.pw/8f2xg8</a></div>
+        </div>
+    </section>
+
+    <!-- FLOATING TELEGRAM BUTTON -->
+    <a href="https://psce.pw/8f2xg8" target="_blank" class="telegram-float" title="Contact Support">
+        <i class="fa-brands fa-telegram"></i>
+    </a>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="logo" style="justify-content: center; color: white; margin-bottom: 20px;">
+            SMS INDIA APP
+        </div>
+        <div class="footer-links">
+            <a href="https://t.me/SMSindia102" target="_blank"><i class="fa-brands fa-telegram"></i> Telegram Support</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+        <div class="copyright">
+            &copy; 2024 SMS India. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. Check for Referral Code in URL (For Landing Page)
+        const urlParams = new URLSearchParams(window.location.search);
+        const refCode = urlParams.get('ref');
+
+        if (refCode) {
+            const alertBox = document.getElementById("ref-alert");
+            alertBox.style.display = "block";
+            document.getElementById("ref-code-display").innerText = refCode;
+        }
+
+        // 2. Copy to Clipboard Function
+        function copyReferral() {
+            if (refCode) {
+                navigator.clipboard.writeText(refCode).then(() => {
+                    console.log("Code Copied");
+                    const btn = document.getElementById("download");
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i> CODE COPIED!';
+                    setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+                }).catch(err => console.error(err));
+            }
+        }
+
+        function toggleFaq(element) {
+            const answer = element.querySelector('.faq-answer');
+            const icon = element.querySelector('.fa-chevron-down');
+            if (answer.style.display === "block") {
+                answer.style.display = "none";
+                icon.style.transform = "rotate(0deg)";
+            } else {
+                answer.style.display = "block";
+                icon.style.transform = "rotate(180deg)";
+            }
+        }
+    </script>
+
+</body>
+</html>
