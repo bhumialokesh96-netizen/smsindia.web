@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/invite",
+      "destination": "/app/invite.html"
+    }
+  ]
+}
