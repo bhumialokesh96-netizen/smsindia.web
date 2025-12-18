@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Opening App...</title>
+    <script>
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            const code = params.get('inviteCode');
+            if(code) {
+                // Open App
+                window.location.href = "https://smsindia.cfd/invite?inviteCode=" + code;
+                // Fallback
+                setTimeout(function(){ 
+                    window.location.href = "https://smsindia.cfd/?ref=" + code; 
+                }, 2000);
+            } else {
+                window.location.href = "https://smsindia.cfd/";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Redirecting to SMS India...</h2>
+</body>
+</html>
