@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,8 +33,20 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
         .logo-area { display: flex; align-items: center; gap: 10px; }
-        .logo-img { width: 35px; height: 35px; border-radius: 50%; border: 2px solid white; }
-        .app-name { color: white; font-weight: bold; font-size: 18px; }
+        .logo-img { 
+            width: 35px; 
+            height: 35px; 
+            border-radius: 50%; 
+            border: 2px solid white; 
+            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
+        }
+        .app-name { 
+            color: white; 
+            font-weight: bold; 
+            font-size: 18px; 
+            text-shadow: 2px 2px 0 #00241d, 3px 3px 4px rgba(0,0,0,0.3);
+            transform: translateY(-1px);
+        }
         .header-btn {
             background: linear-gradient(to bottom, #FFAB00, #FF6D00);
             border: 2px solid #FFE082;
@@ -43,7 +56,13 @@
             font-weight: bold;
             text-decoration: none;
             font-size: 14px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 3px 0 #BF360C, 0 4px 6px rgba(0,0,0,0.2);
+            transform: translateY(0);
+            transition: all 0.2s ease;
+        }
+        .header-btn:hover {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 #BF360C, 0 2px 4px rgba(0,0,0,0.2);
         }
 
         /* --- MAIN CONTENT --- */
@@ -61,17 +80,23 @@
             color: #FFEB3B;
             font-size: 26px;
             font-weight: 900;
-            text-shadow: 2px 2px 0px #004D40;
+            text-shadow: 
+                2px 2px 0px #004D40,
+                4px 4px 4px rgba(0,0,0,0.3);
             line-height: 1.2;
             margin-bottom: 5px;
             padding: 0 10px;
+            transform: translateY(-2px);
         }
         h2 {
             color: white;
             font-size: 20px;
             font-weight: 700;
             margin-bottom: 25px;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+            text-shadow: 
+                1px 1px 0 #004D40,
+                2px 2px 4px rgba(0,0,0,0.3);
+            transform: translateY(-1px);
         }
 
         /* --- 3 FEATURE ICONS --- */
@@ -81,38 +106,75 @@
             padding: 0 10px;
             margin-bottom: 30px;
         }
-        .feature-item { width: 30%; }
+        .feature-item { 
+            width: 30%; 
+        }
         .icon-box {
             background: rgba(255,255,255,0.2);
             border-radius: 15px;
             padding: 10px;
             margin-bottom: 5px;
             backdrop-filter: blur(5px);
+            box-shadow: 
+                0 3px 5px rgba(0,0,0,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            transform: translateY(0);
+            transition: all 0.3s ease;
         }
-        .feature-img { width: 40px; height: 40px; object-fit: contain; }
-        .feature-text { color: #E0F2F1; font-size: 12px; font-weight: bold; line-height: 1.2; }
+        .icon-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 5px 10px rgba(0,0,0,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+        .feature-img { 
+            width: 40px; 
+            height: 40px; 
+            object-fit: contain;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
+        }
+        .feature-text { 
+            color: #E0F2F1; 
+            font-size: 12px; 
+            font-weight: bold; 
+            line-height: 1.2;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+        }
 
         /* --- HERO IMAGE (GIRL + PHONES) --- */
         .hero-image-container {
             position: relative;
             margin-top: 20px;
         }
-        /* Replace this URL with your AI Generated Girl Image */
         .hero-girl {
             width: 100%;
             max-width: 400px;
             filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
+            transform: translateY(0);
+            animation: float-girl 4s infinite ease-in-out;
+        }
+        
+        @keyframes float-girl {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
 
         /* --- FLOATING COINS (Decoration) --- */
-        .coin { position: absolute; width: 40px; animation: float 3s infinite ease-in-out; }
+        .coin { 
+            position: absolute; 
+            width: 40px; 
+            animation: float 3s infinite ease-in-out;
+            filter: drop-shadow(0 3px 5px rgba(0,0,0,0.3));
+        }
         .c1 { top: 20%; left: 5%; animation-delay: 0s; }
         .c2 { top: 30%; right: 5%; animation-delay: 1.5s; }
         
         @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(10deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
+            0% { transform: translateY(0px) rotate(0deg) scale(1); }
+            50% { transform: translateY(-15px) rotate(10deg) scale(1.1); }
+            100% { transform: translateY(0px) rotate(0deg) scale(1); }
         }
 
         /* --- BIG DOWNLOAD BUTTON --- */
@@ -137,8 +199,45 @@
             font-weight: 900;
             text-decoration: none;
             border: 4px solid #FFE082;
-            box-shadow: 0 6px 0 #BF360C, 0 15px 20px rgba(0,0,0,0.3);
+            box-shadow: 
+                0 6px 0 #BF360C, 
+                0 10px 20px rgba(0,0,0,0.4),
+                inset 0 1px 0 rgba(255,255,255,0.3);
             animation: pulse 2s infinite;
+            text-shadow: 
+                1px 1px 0 #BF360C,
+                2px 2px 4px rgba(0,0,0,0.3);
+            transform: translateY(0);
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .download-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.6s ease;
+        }
+        .download-btn:hover:before {
+            left: 100%;
+        }
+        .download-btn:hover {
+            transform: translateY(2px);
+            box-shadow: 
+                0 4px 0 #BF360C, 
+                0 8px 15px rgba(0,0,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+        .download-btn:active {
+            transform: translateY(4px);
+            box-shadow: 
+                0 2px 0 #BF360C, 
+                0 5px 10px rgba(0,0,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.3);
         }
 
         @keyframes pulse {
@@ -146,7 +245,60 @@
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
-
+        
+        /* --- HOW IT WORKS SECTION --- */
+        .how-it-works {
+            padding: 20px;
+            margin-top: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            margin: 20px;
+            backdrop-filter: blur(5px);
+            box-shadow: 
+                0 5px 15px rgba(0,0,0,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .how-it-works h3 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-shadow: 
+                1px 1px 0 #004D40,
+                2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .step {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.2);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: #FFEB3B;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+            color: #004D40;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+            text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+        }
+        .step-text {
+            color: white;
+            font-size: 14px;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+        }
     </style>
 </head>
 <body>
@@ -198,12 +350,35 @@
             <!-- Use a transparent PNG of an excited person here -->
             <img src="https://freepngimg.com/thumb/happy_person/12-2-happy-person-free-download-png.png" class="hero-girl" alt="Happy Winner">
         </div>
+        
+        <!-- How It Works Section -->
+        <div class="how-it-works">
+            <h3>How It Works</h3>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-text">Download the WinMate App</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-text">Complete simple tasks</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-text">Earn money instantly</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-text">Withdraw to your bank account</div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Sticky Bottom Button -->
     <div class="bottom-bar">
         <!-- PUT YOUR APK DOWNLOAD LINK HERE -->
-        <a href="YOUR_APK_LINK_HERE.apk" class="download-btn" id="downloadLink">
+        <a href="./WinMate.apk" class="download-btn" id="downloadLink">
             Download Now
         </a>
     </div>
@@ -222,6 +397,21 @@
                 alert("Referral Code " + refCode + " copied! Paste it during registration.");
             });
         }
+        
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const featureItems = document.querySelectorAll('.feature-item');
+            
+            featureItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
     </script>
 </body>
 </html>
